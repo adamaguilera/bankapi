@@ -1,0 +1,19 @@
+name: BankAPI
+authors: [adamags]
+description: A banking system in Minecraft
+version: 1.0
+#api-version: 1.18.1
+main: bankapi.Main
+commands:
+  bank:
+    description: Opens your personal bank.
+    usage: /bank
+  balance:
+    description: Shows your current balance in the bank.
+    usage: /balance
+  deposit:
+    description: Automatically transfers all gold from your inventory to the bank.
+    usage: /deposit
+  send:
+    description: Sends gold in ingot to another player's bank
+    usage: /send [amount] player
