@@ -1,8 +1,8 @@
 # ignore server folder
 /server/
 
-# build path ignore
-tutorial/target/
+# vscode
+*.code-workspace
 
 # IDEA ignore
 .idea/

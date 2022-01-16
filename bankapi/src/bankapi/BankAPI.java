@@ -14,8 +14,6 @@ public class BankAPI extends JavaPlugin {
 
     @Override
     public void onEnable () {
-        this.gameListener = new GameListener();
-        this.getServer().getPluginManager().registerEvents(gameListener, this);
         Bukkit.broadcastMessage(ON_ENABLE);
     }
 

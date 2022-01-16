@@ -3,7 +3,7 @@ authors: [adamags]
 description: A banking system in Minecraft
 version: 1.0
 #api-version: 1.18.1
-main: bankapi.Main
+main: bankapi.BankAPI
 commands:
   bank:
     description: Opens your personal bank.

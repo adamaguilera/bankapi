@@ -6,6 +6,7 @@ A plugin that incorporates a bank system to Minecraft. All players have access t
 - `/balance` shows your current balance in the bank
 - `/deposit` automatically transfers all gold from your inventory to your bank
 - `/send [amount] [player]` sends gold in ingots to another player's bank
+- `/wipe` wipes your account (after confirming)
 ## API Usage
 ### How to retrieve the plugin
 - Mark Bank plugin as a dependency to your plugin in `pom.xml`
@@ -22,3 +23,5 @@ A plugin that incorporates a bank system to Minecraft. All players have access t
     - Generates amount and deposits it to receiver's bank
 - `boolean donate(double amount)`
     - Generates amount and deposits it to all player's banks.
+- `boolean wipe (UUID playerID)`
+    - Removes all recorded data from an account
