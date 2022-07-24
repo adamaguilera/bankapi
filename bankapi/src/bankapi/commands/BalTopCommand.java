@@ -24,8 +24,6 @@ public class BalTopCommand implements Command {
             .showDebug(true)
             .build();
 
-    final int BAL_TOP_COUNT = 5;
-
     /**
      * /send {player} {int}
      * @param arguments represents command arguments being passed in
@@ -33,7 +31,7 @@ public class BalTopCommand implements Command {
     public void execute (final CommandSender commandSender, final List<String> arguments, BankAPI bankAPI) {
         if (commandSender instanceof Player senderPlayer) {
             UUID senderID = senderPlayer.getUniqueId();
-            bankAPI.baltop(senderID, BAL_TOP_COUNT);
+            bankAPI.baltop(senderID, bankAPI.getBankData().getBaltopCount());
         }
     }
 }

@@ -15,7 +15,7 @@ public class CommandTree {
             .SERVICE("COMMAND_TREE")
             .showDebug(true)
             .build();
-    final String MAX_DEPTH_COMMAND_SEARCH_RETURNING_COMMAND = "Index %d >= %d argument size, returning command here";
+    final String MAX_DEPTH_COMMAND_SEARCH_RETURNING_COMMAND = "Command found at current branch at index %d with %d argument size.";
     final String SEARCHING_FOR_COMMAND_AT_INDEX = "Searching for command at index %d on argument %s";
     final String FOUND_VALID_MATCHING_ARGUMENTS = "Found %d valid matching arguments";
     final HashMap<CommandArgument, CommandTree> commandTrees = new HashMap<>();

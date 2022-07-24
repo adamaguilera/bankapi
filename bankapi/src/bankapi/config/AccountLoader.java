@@ -1,11 +1,11 @@
-package bankapi;
+package bankapi.config;
 
+import bankapi.Account;
+import bankapi.config.data.AccountData;
 import bankapi.util.BankLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,11 +14,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.UUID;
 
-@Data
-@Builder
-class AccountData {
-    HashMap<UUID, Account> accounts;
-}
 
 public class AccountLoader {
     final BankLogger logger = BankLogger.builder()
@@ -48,7 +43,9 @@ public class AccountLoader {
         } catch (IOException e) {
             this.logger.debug(FAILED_TO_LOAD_ACCOUNT_DATA);
 //            throw new RuntimeException(e);
-            return new AccountData(new HashMap<>());
+            return AccountData.builder()
+                    .accounts(new HashMap<>())
+                    .build();
         }
 
     }

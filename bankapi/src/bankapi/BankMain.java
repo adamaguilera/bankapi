@@ -21,29 +21,30 @@ public class BankMain extends JavaPlugin {
             .build();
     final String BANKAPI_CONFIG_FOLDER_PATH = "./plugins/BankAPI/";
     final String CREATED_BANKAPI_CONFIG_FOLDER = "Created BankAPI config folder";
+    final String SCHEDULE_AUTOSAVE = "Scheduling autosaving task every %d minutes";
     final CommandHandler commandHandler = new CommandHandler();
     @Getter
     final BankAPI bankAPI = new BankAPI();
 
-    // 20 ticks in second, save every hour
-    final long AUTO_SAVE_DELAY = 20 * 60 * 60;
-    final long AUTO_SAVE_PERIOD = 0L;
     int autosaveTaskId;
-
 
     @Override
     public void onEnable () {
         this.generateConfigIfNotPresent();
         this.bankAPI.load();
+        this.logger.debug(String.format(SCHEDULE_AUTOSAVE, bankAPI.getBankData().getAutosaveMinutes()));
         this.autosaveTaskId =Bukkit.getScheduler().scheduleSyncRepeatingTask(
-                this, this.bankAPI::save, AUTO_SAVE_DELAY, AUTO_SAVE_PERIOD
+                this,
+                () -> this.bankAPI.save(true),
+                bankAPI.getBankData().getAutosaveInTicks(),
+                bankAPI.getBankData().getAutosaveInTicks()
         );
         this.logger.debug(ON_ENABLE);
     }
 
     @Override
     public void onDisable () {
-        this.bankAPI.save();
+        this.bankAPI.save(false);
         this.logger.debug(ON_DISABLE);
     }
 
