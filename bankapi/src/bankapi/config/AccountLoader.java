@@ -25,7 +25,7 @@ public class AccountLoader {
     final String FINISH_LOADING_PLAYER_BALANCES = "Finished loading %d accounts from json";
     final String ATTEMPT_SAVING_PLAYER_BALANCES = "Attempting to save %d player balances to %s";
     final String FINISH_SAVING_PLAYER_BALANCES = "Finished saving %d player balances to %s";
-    final String FAILED_TO_LOAD_ACCOUNT_DATA = "Failed to load account data";
+    final String FAILED_TO_LOAD_ACCOUNT_DATA = "Unable to load account data";
     final Path PLAYER_BALANCES_PATH = Paths.get("./plugins/BankAPI/player_balances.json");
     final Gson GSON_BUILDER = new GsonBuilder()
             .setPrettyPrinting()
