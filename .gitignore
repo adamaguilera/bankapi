@@ -1,11 +1,16 @@
 # ignore server folder
 /server/
 
+# ignore target folder
+bankapi/target/
+
 # vscode
 *.code-workspace
 
 # IDEA ignore
 .idea/
+*.iml
+.DS_Store
 
 # .gitignore Java template
 # Compiled class file

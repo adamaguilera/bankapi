@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # enter plugin directory
-cd ./tutorial || exit
+cd ./bankapi || exit
 
 # compile project
 mvn compile
@@ -13,4 +13,4 @@ cd ..
 mkdir -p ./server/plugins
 
 # move target jar into plugin folder
-mv ./tutorial/target/TutorialPlugin-1.0.jar ./server/plugins/
+mv ./bankapi/target/BankAPI-1.0.jar ./server/plugins/

@@ -1,27 +1,24 @@
 # Minecraft BankAPI
 ## Description
-A plugin that incorporates a bank system to Minecraft. All players have access to a free virtual bank that stores their gold. Other plugins can use this to charge players for access to features like vaults, teleportation, or payments.
-## Commands
-- `/bank` opens your personal bank
+A plugin that stores player balances. Manages automatically saving these balances and can easily be referenced from other plugins
+## Player Commands
 - `/balance` shows your current balance in the bank
-- `/deposit` automatically transfers all gold from your inventory to your bank
-- `/send [amount] [player]` sends gold in ingots to another player's bank
-- `/wipe` wipes your account (after confirming)
+- `/send [player] [amount] ` sends gold in ingots to another player's bank
 ## API Usage
 ### How to retrieve the plugin
 - Mark Bank plugin as a dependency to your plugin in `pom.xml`
-- Import BankAPI in your plugin with `import BankAPI`
-- Get BankAPI instance with `BankAPI bank = (BankAPI) Bukkit.getPluginManager().getPlugin("BankAPI")
-### Functions
-- `double balance(UUID playerID)`
-- `boolean deposit(UUID playerID, double amount)` 
-- `boolean withdraw(UUID playerID, double amount)`
+- Import BankAPI and BankMain in your plugin with `import BankMain` and `import BankAPI`
+- Get BankAPI instance with `BankAPI bank = ((BankMain) Bukkit.getPluginManager().getPlugin("BankAPI")).getBankAPI();`
+### BankAPI Functions
+- `void balance(UUID playerID)`
+- `void deposit(UUID playerID, double amount)` 
+- `void withdraw(UUID playerID, double amount)`
 - `boolean send(UUID sender, UUID receiver, double amount)`
-- `boolean afford(UUID playerID, double amount)`
-    - Returns True if playerID's balance is greater or equal to amount
-- `boolean donate(UUID receiver, double amount)`
-    - Generates amount and deposits it to receiver's bank
-- `boolean donate(double amount)`
-    - Generates amount and deposits it to all player's banks.
-- `boolean wipe (UUID playerID)`
-    - Removes all recorded data from an account
+- `boolean has(UUID playerID, double amount)`
+  - Returns True if playerID's balance is greater or equal to amount
+- `void donate(UUID receiver, double amount)`
+  - Generates amount and deposits it to receiver's bank
+- `void donate(double amount)`
+  - Generates amount and deposits it to all player's banks.
+- `boolean save ()`
+  - Saves current state of currencies of all players to json file
