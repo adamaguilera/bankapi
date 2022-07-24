@@ -17,6 +17,7 @@ public class Account {
     final transient String DEPOSIT_LOG = "%s deposited %f amount. New balance: %f";
     final transient String WITHDRAW_LOG = "%s withdrew %f amount. New balance: %f";
     final UUID playerID;
+    final String name;
     @Getter
     double balance;
 

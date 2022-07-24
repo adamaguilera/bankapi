@@ -11,3 +11,6 @@ commands:
   send:
     description: Sends amount to another player, they must be online
     usage: /send [amount] player
+  baltop:
+    description: Gives top balances on the server
+    usage: /baltop

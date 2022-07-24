@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class BankAPI {
@@ -16,12 +17,15 @@ public class BankAPI {
             .showDebug(true)
             .build();
 
+    final static int MAX_BAL_TOP_SEARCH = 10000;
     final String CREATED_ACCOUNT_DEBUG = "Provisioned account for %s with %f starting balance";
     final String ATTEMPT_SEND_MESSAGE = "%s attempting to send $%f to %s";
     final String SEND_NOT_ENOUGH_DEBUG = "%s does not $%f to send";
     final String ATTEMPT_SUCCESS_MESSAGE = "%s successfully sent $%f to %s";
     final String GLOBAL_DONATION_MESSAGE = "Global donation of $%f was made to %d online players!";
     final String DONATION_MESSAGE = "%s received a donation of $%f";
+    final String BAL_TOP_HEADER = "Top %d player balances:";
+    final String BAL_TOP_PLAYER_BALANCE = "%d. %s: $%d";
 
     double startingBalance;
 
@@ -37,6 +41,18 @@ public class BankAPI {
 
     public double balance (final UUID playerID) { return this.getOrCreateAccount(playerID).getBalance(); }
     public int getIntBalance (final UUID playerID) { return (int) this.getOrCreateAccount(playerID).getBalance(); }
+    public void baltop (final UUID playerID, int count) {
+        this.logger.message(playerID, String.format(BAL_TOP_HEADER, count));
+        AtomicInteger order = new AtomicInteger(1);
+        this.accounts.values().stream().limit(MAX_BAL_TOP_SEARCH).sorted().limit(count)
+                .forEachOrdered(
+                        account -> {
+                            String name = Bukkit.getOfflinePlayer(playerID).getName();
+                            this.logger.message(playerID, String.format(BAL_TOP_PLAYER_BALANCE, order.get(), name, (int) account.getBalance()));
+                            order.addAndGet(1);
+                        }
+                );
+    }
     public void deposit (final UUID playerID, double amount) { this.getOrCreateAccount(playerID).deposit(amount); }
     public void withdraw (final UUID playerID, double amount) { this.getOrCreateAccount(playerID).withdraw(amount); }
     public void has (final UUID playerID, double amount) { this.getOrCreateAccount(playerID).has(amount); }

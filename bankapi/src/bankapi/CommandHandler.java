@@ -1,5 +1,6 @@
 package bankapi;
 
+import bankapi.commands.BalTopCommand;
 import bankapi.commands.BalanceCommand;
 import bankapi.commands.SendCommand;
 import bankapi.util.BankLogger;
@@ -25,6 +26,8 @@ public class CommandHandler {
         this.commandTree.insert(sendCommand.getCommandArguments(), sendCommand);
         BalanceCommand balanceCommand = new BalanceCommand();
         this.commandTree.insert(balanceCommand.getCommandArguments(), balanceCommand);
+        BalTopCommand balTopCommand = new BalTopCommand();
+        this.commandTree.insert(balTopCommand.getCommandArguments(), balTopCommand);
     }
 
 
