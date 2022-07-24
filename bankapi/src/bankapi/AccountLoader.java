@@ -47,7 +47,8 @@ public class AccountLoader {
             return accountData;
         } catch (IOException e) {
             this.logger.debug(FAILED_TO_LOAD_ACCOUNT_DATA);
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            return new AccountData(new HashMap<>());
         }
 
     }

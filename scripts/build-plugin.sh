@@ -4,9 +4,9 @@
 cd ./bankapi || exit
 
 # compile project
-mvn compile
+mvn compile || exit
 # build package
-mvn clean package
+mvn clean package || exit
 cd ..
 
 # make directory for plugins if it doesn't exist

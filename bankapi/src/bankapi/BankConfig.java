@@ -38,7 +38,8 @@ public class BankConfig {
             return bankData;
         } catch (IOException e) {
             this.logger.debug(FAILED_LOAD_BANK_CONFIG);
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            return new BankData();
         }
 
     }
